@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Colores básicos -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Colores personalizados para el juego -->
-    <color name="active_player_color">#85CCC0</color>  <!-- Color para el jugador activo -->
-    <color name="inactive_player_color">#FFA07A</color> <!-- Color para el jugador inactivo -->
+    <color name="active_player_color">#85CCC0</color>
+    <color name="inactive_player_color">#FFA07A</color>
 </resources>
