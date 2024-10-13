@@ -3,15 +3,18 @@ package com.example.thegameofpig;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.Random;
 import androidx.core.content.ContextCompat;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView player1ScoreText, player2ScoreText, currentScoreText, diceNumberText;
+    private TextView player1ScoreText, player2ScoreText, currentScoreText;
+    private ImageView diceImage;
     private Button rollDiceButton, holdButton, resetButton;
     private View viewPlayer1, viewPlayer2;
 
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         player1ScoreText = findViewById(R.id.player1_score);
         player2ScoreText = findViewById(R.id.player2_score);
         currentScoreText = findViewById(R.id.current_score);
-        diceNumberText = findViewById(R.id.dice_number);
+        diceImage = findViewById(R.id.dice_image);
         rollDiceButton = findViewById(R.id.roll_dice_button);
         holdButton = findViewById(R.id.hold_button);
         resetButton = findViewById(R.id.reset_button);
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         viewPlayer2 = findViewById(R.id.viewPlayer2);
 
         random = new Random();
+
+        displayInitialDiceImage();
 
         rollDiceButton.setOnClickListener(v -> rollDice());
 
@@ -47,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         updatePlayerView();
     }
 
+    private void displayInitialDiceImage() {
+        diceImage.setImageResource(R.mipmap.dice_random);
+    }
+
     private void resetGame() {
         player1Score = 0;
         player2Score = 0;
@@ -55,15 +64,16 @@ public class MainActivity extends AppCompatActivity {
 
         player1ScoreText.setText("Player 1 Score: " + player1Score);
         player2ScoreText.setText("Player 2 Score: " + player2Score);
+        currentScoreText.setText("Current Score: " + currentScore);
 
-        diceNumberText.setText("1");
+        displayInitialDiceImage();
         updatePlayerView();
         Toast.makeText(this, "Game reset", Toast.LENGTH_SHORT).show();
     }
 
     private void rollDice() {
         int diceValue = random.nextInt(6) + 1;
-        diceNumberText.setText(String.valueOf(diceValue));
+        updateDiceImage(diceValue);
 
         if (diceValue == 1) {
             currentScore = 0;
@@ -71,6 +81,32 @@ public class MainActivity extends AppCompatActivity {
             switchPlayer();
         } else {
             currentScore += diceValue;
+            currentScoreText.setText("Current Score: " + currentScore);
+        }
+    }
+
+    private void updateDiceImage(int diceValue) {
+        String imageName = "dice_" + convertNumberToWord(diceValue);
+        int resId = getResources().getIdentifier(imageName, "mipmap", getPackageName());
+        diceImage.setImageResource(resId);
+    }
+
+    private String convertNumberToWord(int number) {
+        switch (number) {
+            case 1:
+                return "one";
+            case 2:
+                return "two";
+            case 3:
+                return "three";
+            case 4:
+                return "four";
+            case 5:
+                return "five";
+            case 6:
+                return "six";
+            default:
+                return "one";
         }
     }
 
@@ -96,8 +132,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     private void switchPlayer() {
         currentScore = 0;
+        currentScoreText.setText("Current Score: " + currentScore);
         activePlayer = (activePlayer == 1) ? 2 : 1;
         updatePlayerView();
         Toast.makeText(this, "Now Player " + activePlayer + "'s turn", Toast.LENGTH_SHORT).show();
