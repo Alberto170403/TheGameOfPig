@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!-- Vista para el color del jugador 1 -->
     <View
         android:id="@+id/viewPlayer1"
         android:layout_width="0dp"
@@ -19,7 +18,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_percent="0.5" />
 
-    <!-- Vista para el color del jugador 2 -->
     <View
         android:id="@+id/viewPlayer2"
         android:layout_width="0dp"
@@ -30,7 +28,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/viewPlayer1" />
 
-    <!-- Texto para la puntuación del Jugador 1 -->
     <TextView
         android:id="@+id/player1_score"
         android:layout_width="wrap_content"
@@ -42,7 +39,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp" />
 
-    <!-- Texto para la puntuación del Jugador 2 -->
     <TextView
         android:id="@+id/player2_score"
         android:layout_width="wrap_content"
@@ -54,7 +50,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp" />
 
-    <!-- Texto para el puntaje acumulado actual -->
     <TextView
         android:id="@+id/current_score"
         android:layout_width="wrap_content"
@@ -66,7 +61,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Texto para mostrar el número del dado -->
     <TextView
         android:id="@+id/dice_number"
         android:layout_width="wrap_content"
@@ -79,7 +73,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Botón para tirar el dado -->
     <Button
         android:id="@+id/roll_dice_button"
         android:layout_width="wrap_content"
@@ -90,7 +83,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Botón para mantener el puntaje -->
     <Button
         android:id="@+id/hold_button"
         android:layout_width="wrap_content"
@@ -101,7 +93,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Botón para reiniciar el juego -->
     <Button
         android:id="@+id/reset_button"
         android:layout_width="wrap_content"
