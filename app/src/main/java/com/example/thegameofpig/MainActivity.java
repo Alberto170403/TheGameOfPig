@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private int player1Score = 0;
     private int player2Score = 0;
     private int currentScore = 0;
-    private int activePlayer = 1; // 1 para el jugador 1, 2 para el jugador 2
+    private int activePlayer = 1;
     private Random random;
 
     @Override
@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Inicializar vistas
         player1ScoreText = findViewById(R.id.player1_score);
         player2ScoreText = findViewById(R.id.player2_score);
         currentScoreText = findViewById(R.id.current_score);
@@ -39,20 +38,15 @@ public class MainActivity extends AppCompatActivity {
 
         random = new Random();
 
-        // Tirar el dado
         rollDiceButton.setOnClickListener(v -> rollDice());
 
-        // Mantener puntaje
         holdButton.setOnClickListener(v -> hold());
 
-        // Reiniciar juego
         resetButton.setOnClickListener(v -> resetGame());
 
-        // Mostrar jugador activo
         updatePlayerView();
     }
 
-    // Reiniciar juego
     private void resetGame() {
         player1Score = 0;
         player2Score = 0;
@@ -62,15 +56,14 @@ public class MainActivity extends AppCompatActivity {
         player1ScoreText.setText("Player 1 Score: " + player1Score);
         player2ScoreText.setText("Player 2 Score: " + player2Score);
 
-        diceNumberText.setText("1"); // Restablecer el número del dado a 1
-        updatePlayerView(); // Actualiza la vista de los jugadores
+        diceNumberText.setText("1");
+        updatePlayerView();
         Toast.makeText(this, "Game reset", Toast.LENGTH_SHORT).show();
     }
 
-    // Tirar el dado
     private void rollDice() {
-        int diceValue = random.nextInt(6) + 1; // Valor entre 1 y 6
-        diceNumberText.setText(String.valueOf(diceValue)); // Mostrar el valor en el TextView
+        int diceValue = random.nextInt(6) + 1;
+        diceNumberText.setText(String.valueOf(diceValue));
 
         if (diceValue == 1) {
             currentScore = 0;
@@ -81,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Mantener puntaje y cambiar turno
     private void hold() {
         if (activePlayer == 1) {
             player1Score += currentScore;
@@ -104,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Cambiar de jugador
     private void switchPlayer() {
         currentScore = 0;
         activePlayer = (activePlayer == 1) ? 2 : 1;
@@ -112,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "Now Player " + activePlayer + "'s turn", Toast.LENGTH_SHORT).show();
     }
 
-    // Actualizar la vista del jugador activo
     private void updatePlayerView() {
         if (activePlayer == 1) {
             viewPlayer1.setBackgroundColor(ContextCompat.getColor(this, R.color.active_player_color));
